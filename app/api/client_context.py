@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
@@ -108,39 +109,55 @@ async def fetch_client_context_stream(
     client_id: int, request: FetchRequest | None = None
 ):
     """Fetch and build client context with SSE progress updates (stub)."""
-    # Check if client exists
-    clients = get_clients()
-    client = next((c for c in clients if c.id == client_id), None)
-    if not client:
-        raise HTTPException(status_code=404, detail="Client not found")
-    
-    context = get_client_context(client_id)
-    if not context:
-        raise HTTPException(status_code=404, detail="Client context not found")
-    
-    # Create progress messages
-    progress_messages = [
-        "Initializing context fetch...",
-        "Scraping website content...",
-        "Analyzing brand elements...",
-        "Extracting company information...",
-        "Finalizing context data...",
-    ]
-    
-    # Prepare final data
-    final_data = context.model_dump(mode='json')
-    
-    async def event_generator():
-        async for event in create_sse_stream(progress_messages, final_data):
-            yield event
-    
-    return StreamingResponse(
-        event_generator(),
-        media_type="text/event-stream",
-        headers={
-            "Cache-Control": "no-cache",
-            "Connection": "keep-alive",
-            "X-Accel-Buffering": "no",
-        },
-    )
+    try:
+        # Check if client exists
+        clients = get_clients()
+        client = next((c for c in clients if c.id == client_id), None)
+        if not client:
+            raise HTTPException(status_code=404, detail="Client not found")
+        
+        context = get_client_context(client_id)
+        if not context:
+            raise HTTPException(status_code=404, detail="Client context not found")
+        
+        # Create progress messages
+        progress_messages = [
+            "Initializing context fetch...",
+            "Scraping website content...",
+            "Analyzing brand elements...",
+            "Extracting company information...",
+            "Finalizing context data...",
+        ]
+        
+        # Prepare final data - use model_dump with mode='json' to ensure proper serialization
+        try:
+            context_dict = context.model_dump(mode='json')
+        except Exception as e:
+            # Fallback: manual serialization
+            context_dict = context.model_dump()
+            # Convert datetime objects to ISO format strings
+            for key in ["created_at", "updated_at"]:
+                if key in context_dict and isinstance(context_dict[key], datetime):
+                    context_dict[key] = context_dict[key].isoformat()
+        
+        async def event_generator():
+            async for event in create_sse_stream(progress_messages, context_dict):
+                yield event
+        
+        return StreamingResponse(
+            event_generator(),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "X-Accel-Buffering": "no",
+            },
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        import traceback
+        print(f"Error in fetch_client_context_stream: {e}")
+        print(traceback.format_exc())
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 

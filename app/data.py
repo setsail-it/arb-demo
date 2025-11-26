@@ -1312,8 +1312,49 @@ def get_blog_post_artifact(blog_post_id: int) -> BlogPostArtifactRead | None:
 
 
 def get_blog_idea_html(blog_idea_id: int, version_number: int | None = None) -> dict | None:
-    """Get hardcoded HTML for a blog idea."""
+    """Get hardcoded HTML for a blog idea from HTML files."""
+    from pathlib import Path
+    
     version = version_number if version_number is not None else 1
+    
+    # We need to determine which client this blog idea belongs to
+    # Check all clients to find which one has this blog_idea_id
+    client_id = None
+    for cid in [1, 2, 7]:
+        blog_ideas = get_blog_ideas(cid)
+        if any(b.id == blog_idea_id for b in blog_ideas):
+            client_id = cid
+            break
+    
+    if client_id is None:
+        return None
+    
+    # Get the directory where this file is located
+    current_dir = Path(__file__).parent
+    html_dir = current_dir / "html"
+    
+    # Try to load HTML from file
+    # File naming convention: client_{client_id}_idea_{blog_idea_id}_v{version}.html
+    # Or fallback: client_{client_id}_idea_{blog_idea_id}.html
+    html_file = html_dir / f"client_{client_id}_idea_{blog_idea_id}_v{version}.html"
+    if not html_file.exists():
+        html_file = html_dir / f"client_{client_id}_idea_{blog_idea_id}.html"
+    
+    # Read HTML from file if it exists
+    if html_file.exists():
+        try:
+            with open(html_file, "r", encoding="utf-8") as f:
+                html_content = f.read()
+            return {
+                "blog_idea_id": blog_idea_id,
+                "version_number": version,
+                "html": html_content,
+            }
+        except Exception as e:
+            print(f"Error reading HTML file {html_file}: {e}")
+            return None
+    
+    # Fallback to default content if file doesn't exist
     # Client 1 blog ideas
     if blog_idea_id == 1 and version == 1:  # Assuming client 1's blog idea 1
         return {

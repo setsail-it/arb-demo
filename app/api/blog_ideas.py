@@ -92,7 +92,7 @@ async def queue_blog_idea(
 async def process_queued_blog_ideas(
     client_id: int
 ):
-    """Move all queued blog ideas to 'in_progress' state (stub)."""
+    """Move all queued blog ideas directly to 'complete' state (stub)."""
     # Check if client exists
     clients = get_clients()
     client = next((c for c in clients if c.id == client_id), None)
@@ -107,7 +107,7 @@ async def process_queued_blog_ideas(
     for blog_idea in queued_ideas:
         results.append({
             "blog_idea_id": blog_idea.id,
-            "state": "in_progress",
+            "state": "complete",
         })
 
     return results
@@ -188,8 +188,8 @@ async def get_blog_idea_html(
     if not blog_idea:
         raise HTTPException(status_code=404, detail="Blog idea not found")
     
-    # Get HTML
-    html_data = get_blog_idea_html_data(blog_idea_id, version_number)
+    # Get HTML (pass client_id to help identify which client this belongs to)
+    html_data = get_blog_idea_html_data(blog_idea_id, version_number, client_id)
     if not html_data:
         raise HTTPException(
             status_code=404,

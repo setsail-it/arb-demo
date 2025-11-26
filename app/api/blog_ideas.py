@@ -92,12 +92,15 @@ async def queue_blog_idea(
 async def process_queued_blog_ideas(
     client_id: int
 ):
-    """Move all queued blog ideas directly to 'complete' state (stub)."""
+    """Move all queued blog ideas directly to 'complete' state (stub, wait 5s)."""
     # Check if client exists
     clients = get_clients()
     client = next((c for c in clients if c.id == client_id), None)
     if not client:
         raise HTTPException(status_code=404, detail="Client not found")
+
+    # Simulate processing delay
+    await delay_response(5)
 
     # Get queued blog ideas
     blog_ideas = get_blog_ideas(client_id)

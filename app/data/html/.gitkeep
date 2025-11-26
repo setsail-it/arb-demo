@@ -1,0 +1,10 @@
+# This directory stores HTML files for blog posts
+# File naming convention:
+# - client_{client_id}_idea_{blog_idea_id}.html
+# - client_{client_id}_idea_{blog_idea_id}_v{version}.html (for versioned HTML)
+#
+# Examples:
+# - client_2_idea_3.html (Setsail, blog idea ID 3)
+# - client_7_idea_1.html (CleanDesign, blog idea ID 1)
+# - client_2_idea_1_v1.html (Setsail, blog idea ID 1, version 1)
+

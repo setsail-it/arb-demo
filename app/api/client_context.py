@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
-from app.data import get_clients, get_client_context
+from app.data import get_clients, get_client_context as get_client_context_data
 from app.schemas.models import ClientContextRead, ClientContextUpdate
 from app.utils import create_sse_stream, delay_response
 
@@ -24,7 +24,7 @@ async def get_client_context(client_id: int):
     if not client:
         raise HTTPException(status_code=404, detail="Client not found")
     
-    context = get_client_context(client_id)
+    context = get_client_context_data(client_id)
     if not context:
         raise HTTPException(status_code=404, detail="Client context not found")
     return context
@@ -43,7 +43,7 @@ async def upsert_client_context(
         raise HTTPException(status_code=404, detail="Client not found")
 
     # Get existing context or create new
-    context = get_client_context(client_id)
+    context = get_client_context_data(client_id)
     if not context:
         # Create new context
         if not context_update.domain:
@@ -98,7 +98,7 @@ async def fetch_client_context(
     
     await delay_response(5)
     
-    context = get_client_context(client_id)
+    context = get_client_context_data(client_id)
     if not context:
         raise HTTPException(status_code=404, detail="Client context not found")
     return context
@@ -116,7 +116,7 @@ async def fetch_client_context_stream(
         if not client:
             raise HTTPException(status_code=404, detail="Client not found")
         
-        context = get_client_context(client_id)
+        context = get_client_context_data(client_id)
         if not context:
             raise HTTPException(status_code=404, detail="Client context not found")
         

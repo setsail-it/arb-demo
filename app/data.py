@@ -35,6 +35,14 @@ def get_clients() -> list[ClientRead]:
             created_at=_base_time,
             updated_at=_base_time,
         ),
+        ClientRead(
+            id=7,
+            name="CleanDesign.ca",
+            slug="cleandesign",
+            notes="Demo client for CleanDesign.ca",
+            created_at=_base_time,
+            updated_at=_base_time,
+        ),
     ]
 
 
@@ -241,6 +249,147 @@ def get_client_context(client_id: int) -> ClientContextRead | None:
             ready=True,
             created_at=datetime.fromisoformat("2025-11-21T23:56:54.547962"),
             updated_at=datetime.fromisoformat("2025-11-25T20:57:16.656304"),
+        )
+    elif client_id == 7:
+        # Real CleanDesign.ca data from production database
+        from datetime import datetime
+        return ClientContextRead(
+            id=7,
+            client_id=7,
+            domain="cleandesign.ca",
+            call_to_action="Explore Our Solutions",
+            about="CleanDesign is a Canadian clean technology company specializing in hybrid energy management systems (hEMS) that integrate battery energy storage, intelligent software, and automated power management to optimize high-demand, mission‑critical operations. Their systems are designed to reduce fuel consumption, greenhouse gas emissions, and operational downtime for applications such as oil and gas drilling rigs, mining operations, remote and off‑grid communities, and EV charging infrastructure. CleanDesign's proprietary controls and AI‑enabled software dynamically balance loads across generators and batteries, enabling load‑dependent starting, peak shaving, blackout reduction, and predictive maintenance. By gathering millisecond‑level operational data and applying machine learning, hEMS continuously improves performance over time, delivering measurable outcomes like millions of dollars in annual fuel savings, tens of thousands of tonnes of CO₂ reductions, and significantly fewer maintenance events. The company positions itself as a partner to both operators and investors, manufacturing and deploying cash‑generating hEMS units that help customers meet ESG and sustainability targets while improving reliability and total cost of ownership.",
+            competitors=[
+                "Aggreko (hybrid power and energy storage)",
+                "Wärtsilä (hybrid and energy storage systems)",
+                "Caterpillar / Cat Hybrid Microgrid Solutions",
+                "Schneider Electric (EcoStruxure Microgrid and energy management)",
+                "ABB Ability Microgrids",
+                "E.ON / Siemens Energy hybrid microgrid and storage providers",
+                "other industrial battery energy storage and hybrid power system integrators serving oil & gas",
+                "mining",
+                "remote communities",
+                "and EV charging infrastructure."
+            ],
+            brand_pov="Modern high‑power operations shouldn't have to choose between reliability, cost efficiency, and decarbonization. CleanDesign's point of view is that traditional diesel‑only power setups are fundamentally inefficient—running multiple gensets at partial load wastes fuel, increases emissions, and drives up maintenance and downtime. Instead of incremental optimizations, they advocate for a system‑level, software‑driven approach where batteries, generators, and intelligent controls work together as a hybrid energy management system. Their stance is that the value of clean technology must be proven in hard numbers—fuel saved, CO₂ reduced, downtime avoided, and payback achieved—so they design hEMS around clear, quantifiable outcomes that can 'pay for themselves' in demanding industrial environments. By translating complex engineering into simple, benefit‑driven solutions and wrapping it in a credible, modern brand, CleanDesign positions itself as a trusted partner helping operators and investors achieve both ESG goals and superior operational performance.",
+            ideal_target_market="Operators and owners of high‑power, mission‑critical assets who face high fuel costs, emissions pressure, and grid limitations, including: (1) drilling contractors and oil & gas operators running land rigs that depend on diesel gensets and experience low‑load inefficiencies, high maintenance, and emissions scrutiny; (2) mining companies and remote industrial sites that require reliable continuous power, often in locations with weak or no grid access; (3) remote and off‑grid communities and critical infrastructure operators seeking to reduce diesel dependence and improve sustainability while maintaining reliability; and (4) EV charging network operators and fleet depots constrained by grid capacity who need to serve many fast chargers or heavy‑duty vehicles without costly grid upgrades. Best‑fit customers view energy as a strategic lever, care about ESG and regulatory compliance, and are willing to invest in hybrid energy systems that deliver measurable ROI, reduced emissions, and higher uptime rather than simply minimizing upfront equipment costs.",
+            brand_safety={
+                "disallowed_tones": [
+                    "Over-hyped, promotional language that feels like a \"get rich quick\" or \"silver bullet\" solution.",
+                    "Fear-based, alarmist, or shaming messaging about emissions, climate, or operational risk.",
+                    "Overly casual or jokey tone that undermines the seriousness of industrial operations and safety.",
+                    "Hostile, polarizing, or partisan political language (especially around energy policy).",
+                    "Language that suggests disregard for community, environmental, or worker safety concerns."
+                ],
+                "disallowed_claims": [
+                    "Unqualified guarantees of financial outcomes (e.g., \"we guarantee you'll save $6M+ per year\").",
+                    "Specific performance or emissions-reduction numbers without data, context, or assumptions.",
+                    "Claims of regulatory compliance or certification that are not formally granted or documented.",
+                    "Statements implying the technology is entirely risk-free or maintenance-free.",
+                    "Assertions of being the \"only\" or \"number one\" solution in the market without independent evidence."
+                ],
+                "sensitive_topics": [
+                    "Partisan political commentary, campaigning, or endorsements (including on board members' prior political roles).",
+                    "Health or medical promises related to emissions reductions (e.g., implying treatment or cure of diseases).",
+                    "Investment or securities advice, including promises of returns to shareholders or investors.",
+                    "Content that appears to greenwash high-emission operations without acknowledging tradeoffs and data.",
+                    "Any depiction of unsafe industrial practices or minimization of safety and environmental regulations."
+                ]
+            },
+            author_tone="Technical but accessible, data-driven, sustainability-focused, B2B-professional, confident yet measured, focused on operational reliability and ROI.",
+            author_rules=[
+                "Lead with clear, benefit-focused language that ties hEMS technology to tangible outcomes like fuel savings, reduced downtime, and lower emissions.",
+                "Translate engineering complexity into plain, accurate language that non-technical decision-makers can understand, while still feeling credible to engineers.",
+                "Use data and quantified results (e.g., savings, CO2 reduction) only when you can reference real deployments, timeframes, and assumptions.",
+                "Avoid absolute guarantees; phrase impact as \"expected\", \"based on deployments\", or \"modeled\" and provide context where possible.",
+                "Emphasize safety, reliability, and continuity of operations whenever discussing system performance in high-stakes environments.",
+                "Frame sustainability as both an environmental and economic advantage (emissions reduction plus fuel and maintenance savings).",
+                "Stay respectful and neutral when referencing oil & gas, mining, or remote communities; focus on partnership and performance, not judgment.",
+                "Keep the writing concise and structured (short paragraphs, clear headings, bullet points for key stats or benefits).",
+                "Avoid buzzwords and vague claims; back up statements with specifics such as use cases, sectors, or operational scenarios.",
+                "Maintain a consistent, confident voice that reflects an established industrial technology partner rather than an early-stage speculative startup."
+            ],
+            logos=[
+                "https://cdn.prod.website-files.com/66ecb5e5dbe444d134d5a8b5/6723b5dd8f42c311c0f69883_Logo%20Coloured.svg",
+                "https://cdn.prod.website-files.com/66ecb5e5dbe444d134d5a8b5/6723b6354a0c0139563a3145_Logo_white.svg"
+            ],
+            colors=[
+                "#021529",
+                "#00C7A5",
+                "#F5F5F5"
+            ],
+            fonts=[
+                "Clean",
+                "modern sans-serif (likely Inter or similar)",
+                "with system fallbacks such as -apple-system",
+                "BlinkMacSystemFont",
+                "\"Segoe UI\"",
+                "sans-serif"
+            ],
+            images_used=None,
+            social_links={
+                "twitter": None,
+                "linkedin": "https://www.linkedin.com/company/cleandesign-inc/",
+                "facebook": None,
+                "instagram": None,
+                "youtube": None,
+                "tiktok": None
+            },
+            company_details={
+                "founded": "2017",
+                "employees": "10-50",
+                "location": "Headquartered in Toronto, Ontario, Canada (with operations focused on North American and other high‑power industrial and remote markets)",
+                "industry": "Clean technology; energy management and engineering; hybrid energy management systems; battery energy storage and power optimization for industrial, oil & gas, mining, remote communities, and EV charging infrastructure."
+            },
+            questionnaire=[
+                {"question": "Tone or voice to absolutely avoid", "answer": "Avoid anything that feels aggressive, arrogant, manipulative, overly salesy, generic/cookie-cutter, cold or unapproachable, overly technical/jargon-heavy, or stiff/corporate. The tone should never feel insincere or like \"hard sell.\""},
+                {"question": "Personality traits the brand should never show", "answer": "Avoid coming across as arrogant, pushy, desperate, condescending, unprofessional, dishonest, flaky/indecisive, or apathetic. The brand should feel confident and grounded, not needy or ego-driven."},
+                {"question": "Emotional responses we should never evoke", "answer": "Avoid content that leaves people feeling confused, overwhelmed, intimidated, shamed, offended, belittled, scared, or bored. If in doubt, steer toward clarity, empowerment, and calm confidence."},
+                {"question": "Ways we should never position the company vs. competitors", "answer": "Avoid trash-talking competitors, making unfounded \"we're the best/only\" claims, comparing specific features or prices without proof, or sounding desperate for business (\"we'll do anything,\" \"we're cheaper than everyone\"). Focus on what we do well, not on putting others down."},
+                {"question": "Claims about products/services we should never make", "answer": "Never use absolute guarantees or exaggerated promises, such as: \"Guaranteed results,\" \"risk-free,\" \"works for everyone,\" \"instant,\" or \"effortless.\" \"#1 in the world\" or similar superlatives without solid evidence. Stick to truthful, supportable claims."},
+                {"question": "Benefits/outcomes we should never promise", "answer": "Avoid promising specific revenue, profit, health, or life outcomes (e.g., \"double your revenue in 30 days,\" \"cure,\" \"completely eliminate X\"), or exact timelines for success. Talk in terms of possibilities, trends, and typical experiences, not guaranteed outcomes."},
+                {"question": "Achievements/credentials we should avoid mentioning", "answer": "Avoid highlighting: Certifications, awards, or partnerships that are pending, disputed, or outdated. Any third-party logos or endorsements without explicit permission. Internal or unofficial achievements that can't be externally verified."},
+                {"question": "Specific words/phrases that should never appear", "answer": "Avoid: Low-value or low-quality language like \"cheap,\" \"dirt-cheap,\" \"bargain-bin.\" Words that insult or stereotype customers. Fear-mongering or manipulative phrases (\"only an idiot wouldn't…\"). Anything profane, explicit, or discriminatory."},
+                {"question": "Acronyms/technical terms to avoid or always explain", "answer": "Avoid internal acronyms and niche technical jargon that the average customer wouldn't know. If an acronym or technical term is necessary, spell it out on first use and explain it in plain language."},
+                {"question": "Corporate buzzwords/fluffy language to avoid", "answer": "Avoid overused buzzwords and vague phrases like: \"Synergy,\" \"game-changing,\" \"disruptive,\" \"cutting-edge,\" \"world-class,\" \"innovative solutions,\" \"paradigm shift,\" \"utilize\" (instead of \"use\"), etc. Prefer concrete, specific wording."},
+                {"question": "Casual expressions/slang/informal terms to avoid", "answer": "Avoid trendy or potentially exclusionary slang, strong swearing, sexual innuendo, or anything that could feel unprofessional (\"lit,\" \"savage,\" \"WTF,\" etc.). Humor is fine, but slang should not undermine clarity or credibility."},
+                {"question": "Pricing-related words to avoid", "answer": "Avoid language that cheapens the brand or invites haggling, such as \"cheap,\" \"dirt cheap,\" \"bargain,\" \"lowest price,\" or \"negotiable\" (unless that's a formal policy). Don't reference competitors' specific prices. Emphasize value and outcomes, not being \"the cheapest.\""},
+                {"question": "Industry-specific topics/issues we should never address", "answer": "Avoid publicly commenting on: Active lawsuits, scandals, or investigations (ours or competitors'). Confidential trade practices or non-public industry information. Speculation about illegal or unethical behavior in the industry."},
+                {"question": "Current events/news topics to avoid", "answer": "Avoid taking public positions on polarizing political issues, elections, wars, or highly sensitive societal conflicts unless leadership explicitly directs otherwise. We also avoid \"newsjacking\" tragedies or crises for marketing."},
+                {"question": "Aspects of business operations that must remain confidential", "answer": "Keep private: Proprietary processes, algorithms, playbooks, and internal tools. Detailed financials (margins, internal rates, salaries). Non-public strategic plans, roadmaps, and negotiations. Internal conflicts, HR issues, or partner disagreements."},
+                {"question": "Demographic groups/customer segments to be especially careful with", "answer": "Be especially cautious when speaking about or to: Minors and young people. Older adults, people with disabilities, and other vulnerable groups. Marginalized communities. Avoid stereotypes, \"poverty porn,\" or messaging that exploits vulnerability."},
+                {"question": "Sensitive personal/professional topics", "answer": "Avoid presenting the brand as an authority on people's private struggles (health, mental health, trauma, addiction, finances, relationships, etc.). Don't speculate about or dramatize these topics, and never shame people for their circumstances."},
+                {"question": "Cultural, religious, or social topics needing extreme caution", "answer": "Avoid using religious or cultural symbols, rituals, or language purely as aesthetic sales tools. Don't joke about or trivialize any culture, religion, or identity group. If referenced, handle with respect and neutrality, not as a marketing gimmick."},
+                {"question": "Competitors that should never be mentioned", "answer": "Default: don't name competitors at all unless the client explicitly approves it and there's a clear strategy. When we do mention others, keep it factual and respectful."},
+                {"question": "Comparative statements about competitors that are off-limits", "answer": "Avoid: \"We're better than X\" without proof. Direct performance, quality, or pricing comparisons that can't be substantiated. Misleading or out-of-context comparisons. When needed, focus on explaining our approach, not attacking others."},
+                {"question": "Former business partners or relationships to avoid referencing", "answer": "Avoid mentioning past partners, employees, or clients if: There were disputes or unhappy endings. We don't have explicit permission to use their name. The relationship is confidential or sensitive."},
+                {"question": "Industry practices/standards we should not criticize", "answer": "Avoid publicly attacking core industry standards, regulatory bodies, or broadly accepted practices, even if we do things differently. Instead, frame our approach as \"an alternative that works for [our customers]\" rather than \"everyone else is wrong.\""},
+                {"question": "Regulatory/legal requirements affecting content", "answer": "Assume we must comply with: Advertising and consumer-protection laws (no deceptive or unsubstantiated claims). Privacy and data regulations (no sharing sensitive personal info). Any sector-specific rules (e.g., around medical, financial, or child-related content). When in doubt, keep claims modest, factual, and clearly non-diagnostic/non-prescriptive."},
+                {"question": "Disclaimers/legal language that must accompany certain topics", "answer": "Include appropriate disclaimers when discussing results, health, finances, or professional advice, e.g.: \"Results vary; no guarantee of specific outcomes.\" \"For informational purposes only; not legal/financial/medical advice.\" \"Past performance does not guarantee future results.\""},
+                {"question": "Medical, financial, or professional advice we must never appear to provide", "answer": "We should never: Diagnose, treat, or prescribe for medical or mental-health conditions. Offer personalized financial, legal, or tax advice. Present ourselves as licensed professionals unless we actually are and the client has explicitly approved it. We can be educational and general, not advisory or prescriptive."},
+                {"question": "Copyright, trademark, or IP concerns", "answer": "Avoid: Using third-party logos, artwork, or photos without a license or permission. Copying competitors' wording, layouts, or proprietary frameworks. Using trademarked names generically or without proper marks/attribution."},
+                {"question": "Types of statistics/studies/data sources to avoid", "answer": "Avoid citing: Unsourced stats (\"studies show…\") or anonymous \"research says.\" Obvious low-credibility or biased sources. Tiny or non-representative studies presented as universal truth. Always prefer reputable, verifiable data with clear attribution."},
+                {"question": "Level of scientific/factual claims we are not authorized to make", "answer": "We should not make strong causal or \"clinically proven\" claims unless there is clear, high-quality evidence and legal approval. Default to moderate language (\"may help,\" \"is associated with,\" \"many customers report…\") instead of \"will,\" \"cures,\" or \"eliminates.\""},
+                {"question": "Testimonials/case studies/customer examples we should never reference", "answer": "Only use testimonials or case studies that: Have explicit written permission. Don't reveal sensitive personal or business information. Don't promise extreme or atypical results as if they are typical. If unsure, anonymize details or don't use the example."},
+                {"question": "Business practices/industry approaches that conflict with values", "answer": "Avoid endorsing or aligning with: Exploitative labor, discrimination, or harassment. Dishonest or deceptive selling practices. Environmental harm as a \"necessary cost of doing business.\" Our content should reflect integrity, respect, and long-term responsibility."},
+                {"question": "Social/environmental topics with a specific stance to respect", "answer": "Default stance: pro-inclusion and pro-responsibility. Avoid: Language that could be interpreted as discriminatory or dismissive. Greenwashing or exaggerated sustainability claims. If we mention social or environmental impact, keep it modest, factual, and aligned with actual practices."},
+                {"question": "Partnerships/sponsorships/associations to avoid suggesting", "answer": "Avoid implying or suggesting partnerships with: Political parties or candidates. Adult, gambling, weapons, tobacco/vaping, or similar high-risk industries. Organizations known for unethical or controversial practices. Also, don't casually suggest \"partnering with X\" if there's no real relationship."},
+                {"question": "Charitable causes/social issues that could be controversial", "answer": "Avoid tying the brand to highly polarizing or partisan causes unless it's a deliberate, approved choice. Default to broadly accepted, non-controversial causes if charity is mentioned at all."},
+                {"question": "Internal processes/procedures that should never be detailed publicly", "answer": "Don't share: Detailed internal SOPs, review flows, security practices, or escalation procedures. Internal decision-making criteria, risk thresholds, or approval paths. Anything that could expose vulnerabilities or give competitors a playbook."},
+                {"question": "Tools, software, or vendors we should avoid mentioning", "answer": "Avoid name-dropping specific vendors, tools, or platforms if: We don't actually use them or endorse them. They're competitors of core partners. There's any legal or contractual restriction on using their name in marketing. Default to generic descriptors (\"project management tool,\" \"CRM\") unless the client says otherwise."},
+                {"question": "Pricing structures/packages/service details that are confidential", "answer": "Keep non-public pricing confidential: Custom quotes, discounts, or special deals. Internal cost breakdowns or margin details. Negotiation levers and minimums. Only mention pricing that's already publicly listed or explicitly approved."},
+                {"question": "Geographic markets/customer types to avoid targeting", "answer": "Avoid creating content that directly targets: Regions where the company cannot legally operate or support customers. Countries or segments restricted by regulation, sanctions, or company policy. Extremely vulnerable groups where targeted marketing would be unethical."},
+                {"question": "Content formats/structures to avoid", "answer": "Avoid formats that: Feel like clickbait or over-sensationalize serious topics. Over-promise with minimal substance (\"thin\" listicles with no depth). Trivialize complex issues that require nuance. Stick to formats that allow for clarity, context, and real value."},
+                {"question": "Visual elements/examples/metaphors to avoid", "answer": "Avoid: Violent, sexualized, or discriminatory imagery. Stereotypical depictions of any demographic group. Appropriative use of religious or cultural symbols. Before/after visuals that imply unrealistic or guaranteed transformations."},
+                {"question": "Call-to-action language/approaches that are inappropriate", "answer": "Avoid high-pressure or guilt-based CTAs like: \"Don't miss out or you'll regret it,\" \"Only an idiot wouldn't…,\" fake countdowns, or manufactured scarcity. CTAs should be clear, honest invitations, not emotional manipulation."},
+                {"question": "Sources/publication types we should never link to", "answer": "Avoid linking to: Gossip sites, conspiracy blogs, or obvious misinformation sources. Hate-based or discriminatory outlets. Extremely low-credibility or spammy sites. When possible, favor reputable, neutral sources (known news outlets, peer-reviewed research, official organizations)."}
+            ],
+            existing_blog_titles=[
+                "CleanDesign Announces Name Change and New Board Member"
+            ],
+            ready=True,
+            created_at=datetime.fromisoformat("2025-11-24T21:56:03.571957"),
+            updated_at=datetime.fromisoformat("2025-11-24T21:56:03.571963"),
         )
     return None
 
